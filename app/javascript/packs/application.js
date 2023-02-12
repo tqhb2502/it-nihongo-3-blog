@@ -19,6 +19,8 @@ require("channels")
 require("trix")
 require("@rails/actiontext")
 
+import '../stylesheets/application';
+
 document.addEventListener('turbolinks:load', () => {
   
   document.addEventListener('click', () => {
