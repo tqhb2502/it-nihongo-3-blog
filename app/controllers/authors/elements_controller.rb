@@ -1,10 +1,12 @@
 module Authors
   class ElementsController < AuthorsController
+    
     before_action :set_post
     before_action :set_element, only: [:show, :edit, :update, :destroy]
   
     # POST /elements
     def create
+      
       @element = @post.elements.build(element_params)
   
       if @element.save
@@ -18,11 +20,8 @@ module Authors
   
     # PATCH/PUT /elements/1
     def update
-      if @element.update(element_params)
-        redirect_to @element, notice: 'Element was successfully updated.'
-      else
-        render :edit
-      end
+      @element.update(element_params)
+      redirect_to edit_post_path(@element.post)
     end
   
     # DELETE /elements/1
