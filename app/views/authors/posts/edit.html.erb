@@ -11,9 +11,17 @@
       </div>
       <div class='card-footer'>
         <% if @post.published %>
-          <a href='#' class='btn btn-secondary btn-block'>Unpublish</a>
+          <%= form_with(model: [@post]) do |form| %>
+            <%= form.hidden_field :published, value: 'false' %>
+            <%= form.hidden_field :published_at, value: nil %>
+            <%= form.submit "Unpublish", class: 'btn btn-secondary btn-block' %>
+          <% end %>
         <% else %>
-          <a href='#' class='btn btn-dark btn-block'>Publish</a>
+          <%= form_with(model: [@post]) do |form| %>
+            <%= form.hidden_field :published, value: 'true' %>
+            <%= form.hidden_field :published_at, value: Time.now %>
+            <%= form.submit "Publish", class: 'btn btn-dark btn-block' %>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -35,6 +43,12 @@
     
     <div class='card'>
       <div class='card-body'>
+        <% if @post.published? %>
+          <span class='badge badge-primary'>
+            Published
+          </span>
+          Published <%= time_ago_in_words(@post.published_at) %>
+        <% end %>
         <% @post.elements.each do |element| %>
           <% if element.persisted? %>
             <% if element.paragraph? %>
