@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
+  
   devise_for :authors
+  get 'authors/show'
+  
   get 'home/index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: "home#index"
+  
   scope module: 'authors' do
     resources :posts do
+      member do
+        get :show
+      end
       resources :elements do
         member do
           patch :move
@@ -12,4 +18,5 @@ Rails.application.routes.draw do
       end
     end
   end
+  
 end

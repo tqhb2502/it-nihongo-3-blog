@@ -1,0 +1,16 @@
+<div class='container mb-3'>
+  <h5>Email:</h5>
+  <%= current_author.email %><br>
+</div>
+<div class='container mb-3'>
+  <h5>Name:</h5>
+  <%= current_author.name %><br>
+</div>
+<div class='container mb-3'>
+  <h5>Age:</h5>
+  <%= current_author.age %><br>
+</div>
+<div class='container mb-3'>
+  <h5>Avatar:</h5>
+  <%= image_tag(current_author.avatar) if current_author.avatar.attached? %>
+</div>

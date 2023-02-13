@@ -4,14 +4,54 @@
     <title>ItNihongo3Blog</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    
+    <!-- bootstrap cdn -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/f65cdfd97c.js" crossorigin="anonymous"></script>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+  <body class='bg-light author'>
+    <div class='container'>
+      
+      <nav class="navbar navbar-expand-lg bg-body-tertiary mt-3">
+        <div class="container-fluid">
+          <%= link_to 'Blog Website', root_path, class: 'navbar-brand' %>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <% if author_signed_in? %>
+                  <li class="nav-item">
+                    <%= link_to 'Profile', authors_show_path, class: 'nav-link text-primary' %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to 'My Posts', posts_path, class: 'nav-link text-primary' %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to 'Log Out', destroy_author_session_path, method: :delete, class: 'nav-link text-secondary' %>
+                  </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to 'Sign Up', new_author_registration_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'Sign In', new_author_session_path, class: 'nav-link' %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <hr>
+      
+      <%= yield %>
+      
+    </div>
   </body>
 </html>

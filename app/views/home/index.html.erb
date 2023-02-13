@@ -1,2 +1,33 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h4 class='mb-4'>
+  <span>News Feed</span>
+</h4>
+
+<% @posts.each do |post| %>
+  <% if post.published? %>
+    <%= link_to post_path(post), class: 'text-decoration-none' do %>
+      <div class='card mb-3 post-card'>
+        <div class='card-body'>
+          <div class='row'>
+            
+            <div class='col-md-2'>
+              <% if post.header_image.present? %>
+                <div class='header-img' style='background-image: url(<%= url_for(post.header_image) %>);'></div>
+              <% end %>
+            </div>
+            
+            <div class='col-md-10'>
+              <% if post.published? %>
+                <span class='badge badge-primary mb-3'>Published</span>
+              <% else %>
+                <span class='badge badge-secondary mb-3'>Unpublished</span>
+              <% end %>
+              <h5 class='card-title mb-2 text-dark'><%= post.title %></h5>
+              <p class='text-secondary mb-0'><%= post.description %></p>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
