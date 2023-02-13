@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   root to: "home#index"
   scope module: 'authors' do
     resources :posts do
-        resources :elements
+      resources :elements do
+        member do
+          patch :move
+        end
+      end
     end
   end
 end
