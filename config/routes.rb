@@ -8,14 +8,12 @@ Rails.application.routes.draw do
   
   scope module: 'authors' do
     resources :posts do
-      member do
-        get :show
-      end
       resources :elements do
         member do
           patch :move
         end
       end
+      get :show
     end
   end
   

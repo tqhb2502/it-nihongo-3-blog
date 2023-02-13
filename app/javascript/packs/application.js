@@ -31,6 +31,12 @@ document.addEventListener('turbolinks:load', () => {
     let element = event.target.closest('.paragraph-content');
     if (!element) return;
     
+    if (!element.nextElementSibling) {
+      
+      event.preventDefault();
+      return;
+    }
+    
     element.classList.add('d-none');
     element.nextElementSibling.classList.remove('d-none');
   });

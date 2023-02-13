@@ -5,6 +5,7 @@ module Authors
     
     # GET /posts/1/show
     def show
+      @post = Post.find(params[:id])
     end
   
     # GET /posts
