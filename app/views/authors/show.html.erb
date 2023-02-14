@@ -1,16 +1,27 @@
-<div class='container mb-3'>
-  <h5>Email:</h5>
-  <%= current_author.email %><br>
-</div>
-<div class='container mb-3'>
-  <h5>Name:</h5>
-  <%= current_author.name %><br>
-</div>
-<div class='container mb-3'>
-  <h5>Age:</h5>
-  <%= current_author.age %><br>
-</div>
-<div class='container mb-3'>
-  <h5>Avatar:</h5>
-  <%= image_tag(current_author.avatar) if current_author.avatar.attached? %>
+<div class='card'>
+  <div class='card-header'>
+    <h2 class='mb-0'>My Profile</h2>
+  </div>
+  <div class='card-body'>
+    <div class='row'>
+      <div class='col-md-4'>
+        <div class='container author-avatar-container'>
+          <h5>Avatar:</h5>
+          <%= image_tag(current_author.avatar) if current_author.avatar.attached? %>
+        </div>
+      </div>
+      <div class='col-md-6'>
+        <div class='container'>
+          <h5>Email:</h5>
+          <%= current_author.email %><br>
+          <hr>
+          <h5>Name:</h5>
+          <%= current_author.name %><br>
+          <hr>
+          <h5>Age:</h5>
+          <%= current_author.age %><br>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
