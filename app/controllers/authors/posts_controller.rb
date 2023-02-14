@@ -7,6 +7,7 @@ module Authors
     def show
       @post = Post.find(params[:id])
       @comment = @post.comments.build
+      @like = @post.likes.build
     end
   
     # GET /posts

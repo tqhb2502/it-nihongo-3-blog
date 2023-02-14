@@ -1,8 +1,8 @@
 .author {
-  .paragraph {
+  .paragraph-content {
     transition: background-color 0.5s ease;
     &:hover {
-      background-color: #f8f9fa;
+      background-color: #f5f6f7;
       cursor: pointer;
     }
   }
