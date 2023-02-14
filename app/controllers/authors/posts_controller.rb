@@ -5,9 +5,23 @@ module Authors
     
     # GET /posts/1
     def show
+      
       @post = Post.find(params[:id])
       @comment = @post.comments.build
-      @like = @post.likes.build
+      
+      @liked = false
+      @post.likes.each do |like|
+        if like.author.id == current_author.id
+          @liked = true
+          @like = like
+          break
+        end
+      end
+      
+      if @liked == false
+        @like = @post.likes.build
+      end
+      
     end
   
     # GET /posts
