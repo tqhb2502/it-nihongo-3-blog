@@ -3,9 +3,10 @@ module Authors
     
     before_action :set_post, only: [:edit, :update, :destroy]
     
-    # GET /posts/1/show
+    # GET /posts/1
     def show
       @post = Post.find(params[:id])
+      @comment = @post.comments.build
     end
   
     # GET /posts
