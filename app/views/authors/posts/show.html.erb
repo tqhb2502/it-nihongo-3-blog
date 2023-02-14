@@ -45,11 +45,18 @@
       <%= form.text_area :content, class: 'form-control mb-2' %>
       <%= form.submit 'Submit', class: 'btn btn-primary mb-4' %>
     <% end %>
-    <% @post.comments.each do |comment| %>
+    <% @post.comments.order(id: :desc).each do |comment| %>
       <% if comment.persisted? %>
         <div class='card mb-3'>
-          <div class='card-header bg-dark'>
-            <h6 class='mb-0 text-light'><%= comment.author.name %> (<%= comment.author.email %>)</h6>
+          <div class='card-header bg-dark d-flex justify-content-between'>
+            <h6 class='mb-0 text-light comment-header-item'><%= comment.author.name %> (<%= comment.author.email %>)</h6>
+            <% if comment.author.id == current_author.id %>
+              <%= link_to post_comment_path(@post, comment), method: :delete,
+                data: { confirm: 'Are you sure?' } do %>
+                
+                <i class="fa-solid fa-xmark text-light comment-header-item delete-comment-btn"></i>
+              <% end %>
+            <% end %>
           </div>
           <div class='card-body comment-content'>
             <%= simple_format(comment.content) %>
