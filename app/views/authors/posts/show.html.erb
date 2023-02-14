@@ -34,16 +34,19 @@
   </div>
 </div>
 
-<div class='card mb-5'>
+<div class='card mb-5' data-controller='create-comment'
+  data-create-comment-author-id='<%= current_author.id %>'
+  data-create-comment-post-id='<%= @post.id %>'>
+  
   <div class='card-header'>
     <h6 class='mb-0'><b>Comments</b></h6>
   </div>
   <div class='card-body'>
-    <%= form_with(model: [@post, @comment]) do |form| %>
+    <%= form_with(model: [@post, @comment], html: { class: 'create-comment-form' }) do |form| %>
       <%= form.hidden_field :author_id, value: current_author.id %>
       <%= form.hidden_field :post_id, value: @post.id %>
-      <%= form.text_area :content, class: 'form-control mb-2' %>
-      <%= form.submit 'Submit', class: 'btn btn-primary mb-4' %>
+      <%= form.text_area :content, class: 'form-control mb-2 comment-content' %>
+      <%= form.submit 'Submit', class: 'btn btn-primary mb-4 create-comment-btn' %>
     <% end %>
     <% @post.comments.order(id: :desc).each do |comment| %>
       <% if comment.persisted? %>

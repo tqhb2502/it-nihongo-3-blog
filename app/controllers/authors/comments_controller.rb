@@ -8,7 +8,7 @@ module Authors
     def create
       @comment = @post.comments.build(comment_params)
       @comment.save
-      redirect_to post_path(@post.id)
+      # redirect_to post_path(@post.id)
     end
   
     # PATCH/PUT /comments/1
