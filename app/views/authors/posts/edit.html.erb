@@ -63,7 +63,7 @@
         <% @post.elements.order(position: :asc).each do |element| %>
           <% if element.persisted? %>
             <% if element.paragraph? %>
-              <div class='m-3' data-id='<%= element.id %>'>
+              <div class='m-3 paragraph' data-id='<%= element.id %>'>
                 
                 <div class='p-3 paragraph-content'>
                   <% if element.content.present? %>

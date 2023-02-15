@@ -9,16 +9,24 @@
         <div class='card-body'>
           <div class='row'>
             
-            <div class='col-md-2'>
+            <div class='col'>
               <% if post.header_image.present? %>
                 <div class='header-img' style='background-image: url(<%= url_for(post.header_image) %>);'></div>
               <% end %>
             </div>
             
-            <div class='col-md-10'>
-              <span class='badge badge-primary mb-3'>Published by <%= post.author.email %></span>
-              <h5 class='card-title mb-2 text-dark'><%= post.title %></h5>
-              <p class='text-secondary mb-0'><%= post.description %></p>
+            <div class='col-md-9'>
+              <div class='row'>
+                <div class='col-lg-10'>
+                  <span class='badge badge-primary mb-3'>Published by <%= post.author.email %></span>
+                  <h5 class='card-title mb-2 text-dark'><%= post.title %></h5>
+                  <%= simple_format post.description, class: 'text-secondary mb-0' %>
+                </div>
+                <div class='col text-center text-secondary'>
+                  <h3 class='mb-0'><i class="fa-solid fa-thumbs-up"></i></h3>
+                  <h5 class='mb-0'><%= post.likes.count %></h5>
+                </div>
+              </div>
             </div>
             
           </div>

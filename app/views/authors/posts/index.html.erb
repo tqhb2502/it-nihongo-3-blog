@@ -1,4 +1,4 @@
-<h4 class='d-flex justify-content-between mb-4 mt-4'>
+<h4 class='d-flex justify-content-between mb-4 mt-4 align-items-center'>
   <span>My Posts</span>
   <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
 </h4>
@@ -9,20 +9,28 @@
       <div class='card-body'>
         <div class='row'>
           
-          <div class='col-md-2'>
+          <div class='col'>
             <% if post.header_image.present? %>
               <div class='header-img' style='background-image: url(<%= url_for(post.header_image) %>);'></div>
             <% end %>
           </div>
           
-          <div class='col-md-10'>
-            <% if post.published? %>
-              <span class='badge badge-primary mb-3'>Published</span>
-            <% else %>
-              <span class='badge badge-secondary mb-3'>Unpublished</span>
-            <% end %>
-            <h5 class='card-title mb-2 text-dark'><%= post.title %></h5>
-            <p class='text-secondary mb-0'><%= post.description %></p>
+          <div class='col-md-9'>
+            <div class='row'>
+              <div class='col-lg-10'>
+                <% if post.published? %>
+                  <span class='badge badge-primary mb-3'>Published</span>
+                <% else %>
+                  <span class='badge badge-secondary mb-3'>Unpublished</span>
+                <% end %>
+                <h5 class='card-title mb-2 text-dark'><%= post.title %></h5>
+                <%= simple_format post.description, class: 'text-secondary mb-0' %>
+              </div>
+              <div class='col text-center text-secondary'>
+                <h3 class='mb-0'><i class="fa-solid fa-thumbs-up"></i></h3>
+                <h5 class='mb-0'><%= post.likes.count %></h5>
+              </div>
+            </div>
           </div>
           
         </div>
